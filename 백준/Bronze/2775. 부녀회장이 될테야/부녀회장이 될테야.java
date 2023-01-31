@@ -12,14 +12,13 @@ public class Main {
 
             int [][] arr = new int [k+1][n+1];
 
-            for (int l=0; l<=n; l++){
+            for (int l=1; l<=n; l++){
                 arr[0][l] = l;
             }
             for (int j=1; j<arr.length; j++){
-                for (int l =0; l<arr[j].length; l++){
-                    for (int b = 0; b<=l; b++){
-                        arr[j][l] += arr[j-1][b];
-                    }
+                arr[j][1] = 1;
+                for (int h=2; h<arr[j].length; h++){
+                    arr[j][h] = arr[j][h-1] + arr[j-1][h];
                 }
             }
 
