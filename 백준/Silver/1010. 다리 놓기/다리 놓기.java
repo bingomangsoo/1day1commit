@@ -1,29 +1,36 @@
 
-import java.math.BigInteger;
-import java.util.Scanner;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        for (int i =0; i<t; i++){
-            int n = sc.nextInt();
-            int m = sc.nextInt();
+        int t = Integer.parseInt(br.readLine());
 
-            int max = Math.max(n,m);
-            int min = Math.min(n,m);
+        for (int i =0; i<t; i++) {
+            String[] strs = br.readLine().split(" ");
+            int n = Integer.parseInt(strs[0]);
+            int m = Integer.parseInt(strs[1]);
+
+            int [][] arr = new int[m+1][n+1];
 
 
-            System.out.println(C(max).divide(C(max-min).multiply(C(min))));
+            bw.write(Long.toString(recall(m,n,arr))+"\n");
+            bw.flush();
 
         }
     }
-    public static BigInteger C(int x){
-        BigInteger sum = BigInteger.valueOf(1);
-        for (int i =x; i>=1; i--){
-            sum = sum.multiply(BigInteger.valueOf(Integer.valueOf(i)));
+    public static int recall(int m, int n,int [][]arr){
+
+        if (arr[m][n] > 0) {
+            return arr[m][n];
         }
-        return sum;
+
+        if (n==m || n==0){
+            return arr[m][n] = 1;
+        }else{
+            return arr[m][n] = recall(m-1,n-1,arr)+recall(m-1,n,arr);
+        }
     }
 }
