@@ -6,20 +6,15 @@ public class Main {
         int n = sc.nextInt();
         int k = sc.nextInt();
 
-        int [][] arr = new int[n+1][n+1];
+        System.out.println(recall(n,k));
 
-        for (int i=0; i<n+1; i++){
-            arr[i][i] = 1;
-            arr[i][0] = 1;
+
+    }
+    public static int recall(int n, int r){
+        if (r == 0 || n==r){
+            return 1;
+        }else {
+            return recall(n-1,r-1) + recall(n-1,r);
         }
-
-        for (int i=1; i<n+1; i++){
-            for (int j=1; j<k+1; j++){
-                arr[i][j] = arr[i-1][j-1] + arr[i-1][j];
-            }
-        }
-        System.out.println(arr[n][k]);
-
-
     }
 }
