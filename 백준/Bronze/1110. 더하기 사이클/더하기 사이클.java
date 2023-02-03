@@ -11,8 +11,8 @@ public class Main {
         int n2 = n%10;
 
 
-        int sum = 0;
-        int result =0;
+        int sum;
+        int result;
         int cnt = 0;
         while(true){
             sum = n1+n2;
