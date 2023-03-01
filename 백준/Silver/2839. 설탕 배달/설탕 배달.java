@@ -9,18 +9,18 @@ public class Main {
 
         int cnt = 0;
 
-        while (n>2){
-            if (n%5 !=0){
-                n-=3;
-                cnt++;
-
-                if (n<5 && n%3 !=0){
-                    cnt = -1;
-                    n = 0;
-                }
-            }else {
+        while (true){
+            if (n%5 ==0){
                 cnt += n/5;
-                n = 0;
+                break;
+            }
+
+            n -=3;
+            cnt++;
+
+            if (n < 0){
+                cnt = -1;
+                break;
             }
 
         }
